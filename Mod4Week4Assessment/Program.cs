@@ -60,9 +60,18 @@ public class School
 
     public void ListBirthdays()
     {
-        foreach(var person in _people)
+        //For the extra goal I had to do a little research online, most of the linq I had already thought of but 'typeof()' was new to me, was previously trying to p.GetType(Student) or p.GetType() == Student
+        var students = _people.Where(p => p.GetType() == typeof(Student));
+        var teachers = _people.Where(p => p.GetType() == typeof(Teacher));
+        Console.WriteLine("\nStudent's Birthdays\n");
+        foreach (var student in students)
         {
-            Console.WriteLine(person.GetBirthday());
+            Console.WriteLine(student.GetBirthday());
+        }
+        Console.WriteLine("\nTeacher's Birthdays\n");
+        foreach(var teacher in teachers)
+        {
+            Console.WriteLine(teacher.GetBirthday());
         }
     }
 
